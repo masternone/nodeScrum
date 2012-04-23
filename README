@@ -1,0 +1,17 @@
+Node Scrum is a Node.js Project
+
+Goal is to creat a web server that will assist in the managing of the scrum process.
+
+To install Node.js follow the instrunction on http://nodejs.org/
+
+To install the dependencies:
+
+npm install
+
+to start the server
+
+$ node ./server
+
+to view the results
+
+http://localhost:8888

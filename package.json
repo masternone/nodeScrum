@@ -1,0 +1,21 @@
+{
+	"name": "ScrumTracker",
+	"preferGlobal": "false",
+	"version": "0.1.1",
+	"author": "Edward Grant <themasternone@gmail.com>",
+	"description": "Scrum tracking",
+	"scripts": {
+		"start" : "node ./server"
+	},
+	"keywords": [
+		"Scrum"
+	],
+	"dependencies" : {
+		"beeline" : "0.1.x",
+		"ejs"     : "0.7.x"
+	},
+	"license": "MIT",
+	"engine": {
+		"node": ">=0.6"
+	}
+}
