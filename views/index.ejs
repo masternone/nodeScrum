@@ -1,0 +1,13 @@
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+<div class="sidebar admin">
+	<ul>
+		<% for( n in sidebar ){ %>
+			<li><a href="<%= sidebar[n].link %>"><%= sidebar[n].text %></a></li>
+		<% } %>
+	</ul>
+</div>
+<div class="content" >
+	Add some primer text here on scrum.
+	Also some text on how to use this application would be good.
+</div>

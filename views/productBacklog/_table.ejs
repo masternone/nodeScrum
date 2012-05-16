@@ -1,0 +1,32 @@
+<table cellpadding="0" cellspacing="0" border="1" frame="void" rules="all" >
+	<thead>
+		<tr>
+			<th>Description</th>
+			<th>Priority</th>
+			<th>Status</th>
+			<th>Theme</th>
+			<th>Size</th>
+		</tr>
+	</thead>
+	<tbody><%
+	if( productBacklog.length > 0 ){
+		productBacklog.forEach(function( value, key ){ 
+			var stripe = key % 2 == 0 ? 'even' : 'odd'; %>
+			<tr class="<%= stripe %>">
+				<td><a href="/productBacklog/<%= key %>"><%= value.description %></a></td>
+				<td><%= value.priority    %></td>
+				<td><%= value.status      %></td>
+				<td><%= value.theme       %></td>
+				<td><%= value.size        %></td>
+			</tr><%
+			if( value.criteria && value.criteria.length > 0 ){
+				value.criteria.foreach( function( value2, key2 ){ %>
+					<tr>
+						<td><%= value2 %></td>
+					</tr><%
+				});
+			}
+		});
+	}
+%>	</tbody>
+</table>

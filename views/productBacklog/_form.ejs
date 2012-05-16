@@ -1,0 +1,48 @@
+<form id="<%= form.name %>" name="<%= form.name %>" action="<%= form.action %>" method="POST" >
+	<% if( !isNaN( productBacklog.id )){ %><input type="hidden" id="id" name="id" value="<%= productBacklog.id %>" /> <% } %>
+	<% if( method == "put" ){ %><input type="hidden" id="_method" name="_method" value="<%= method %>" /> <% } %>
+	<% productBacklog.name = typeof( productBacklog.name ) == 'undefined' ? '' : productBacklog.name %>
+	<% productBacklog.priority = isNaN( productBacklog.priority ) ? 0 : productBacklog.priority %>
+	<% productBacklog.size = isNaN( productBacklog.size ) ? 0 : productBacklog.size %>
+	<p>
+		<label for="description" >Description</label>
+		<textarea id="description" name="description"><%= productBacklog.name %></textarea>
+		<span class="clearfix" ></span>
+	</p>
+	<div class="clearfix" ></div>
+	<p>
+		<label for="priority" >Priority</label>
+		<input type="number" id="priority" name="priority" value="<%= productBacklog.priority %>" />
+	</p>
+	<div class="clearfix" ></div>
+	<p>
+		<label for="status" >Status</label>
+		<select id="status" name="status"><%
+			status.forEach( function( value, key ){
+				selected = value.id == productBacklog.status ? 'selected="selected"' : '';
+				%><option value="<%= value.id %>"><%= value.name %></option><%
+			}); %>
+		</select>
+	</p>
+	<div class="clearfix" ></div>
+	<p>
+		<label for="theme" >Theme</label>
+		<select id="theme" name="theme"><%
+			theme.forEach( function( value, key ){
+				selected = value.id == productBacklog.theme ? 'selected="selected"' : '';
+				%><option value="<%= value.id %>"><%= value.name %></option><%
+			}); %>
+		</select>
+	</p>
+	<div class="clearfix" ></div>
+	<p>
+		<label for="size" >Size</label>
+		<input type="number" id="size" name="size" value="<%= productBacklog.size %>" />
+	</p>
+	<div class="clearfix" ></div>
+	<p>
+		<input type="submit" id="submit" name="submit" value="<%= form.submit %>" />
+		<input type="reset" id="reset" name="reset" value="Reset" />
+	</p>
+	<div class="clearfix" ></div>
+</form>
