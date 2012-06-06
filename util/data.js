@@ -29,13 +29,23 @@ var get = exports.get = function( fileName, callback ){
 	});
 }
 
-exports.set = function( filename, data, callback ){
+var set = exports.set = function( filename, data, callback ){
 	fileName = __dirname + '/../data/' + filename + '.json';
 	get( filename, function( error, fileContent ){
+		// Make numbers numbers
 		for( n in data ){
 			data[n] = data[n] == data[n] * 1 ? data[n] * 1 : data[n];
 		}
-		fileContent.push( data );
+		if( !isNaN( data.id )){
+			console.log( 'inside true' );
+			for( n in data ){
+				if( n == 'id' || n == 'submit' ) continue;
+				fileContent[data.id][n] = data[n];
+			}
+		} else {
+			console.log( 'inside false' );
+			fileContent.push( data );
+		}
 		var stream = fs.createWriteStream( fileName );
 		stream.once( 'open', function(){
 			stream.end( JSON.stringify( fileContent ));

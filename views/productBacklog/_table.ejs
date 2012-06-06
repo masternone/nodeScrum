@@ -6,6 +6,7 @@
 			<th>Status</th>
 			<th>Theme</th>
 			<th>Size</th>
+			<th>&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody><%
@@ -18,6 +19,7 @@
 				<td><%= value.status      %></td>
 				<td><%= value.theme       %></td>
 				<td><%= value.size        %></td>
+				<td><a href="/productBacklog/edit/<%= key %>">Edit</a></td> 
 			</tr><%
 			if( value.criteria && value.criteria.length > 0 ){
 				value.criteria.foreach( function( value2, key2 ){ %>

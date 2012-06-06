@@ -1,45 +1,74 @@
 <form id="<%= form.name %>" name="<%= form.name %>" action="<%= form.action %>" method="POST" >
-	<% if( !isNaN( productBacklog.id )){ %><input type="hidden" id="id" name="id" value="<%= productBacklog.id %>" /> <% } %>
-	<% if( method == "put" ){ %><input type="hidden" id="_method" name="_method" value="<%= method %>" /> <% } %>
-	<% productBacklog.name = typeof( productBacklog.name ) == 'undefined' ? '' : productBacklog.name %>
+	<% if( form.method == "PUT" ){ %><input type="hidden" id="_method" name="_method" value="<%= form.method %>" /> <% } %>
+	<% productBacklog.description = typeof( productBacklog.description ) == 'undefined' ? '' : productBacklog.description %>
 	<% productBacklog.priority = isNaN( productBacklog.priority ) ? 0 : productBacklog.priority %>
 	<% productBacklog.size = isNaN( productBacklog.size ) ? 0 : productBacklog.size %>
+	<% 
+		for( n in productBacklog ){
+			switch( n ){
+				case 'description':
+	%>
 	<p>
 		<label for="description" >Description</label>
-		<textarea id="description" name="description"><%= productBacklog.name %></textarea>
+		<textarea id="description" name="description"><%= productBacklog[n] %></textarea>
 		<span class="clearfix" ></span>
 	</p>
 	<div class="clearfix" ></div>
+	<%
+					break;
+				case 'priority':
+	%>
 	<p>
 		<label for="priority" >Priority</label>
-		<input type="number" id="priority" name="priority" value="<%= productBacklog.priority %>" />
+		<input type="number" id="priority" name="priority" value="<%= productBacklog[n] %>" />
 	</p>
 	<div class="clearfix" ></div>
+	<%
+					break;
+				case 'status':
+	%>
 	<p>
 		<label for="status" >Status</label>
 		<select id="status" name="status"><%
 			status.forEach( function( value, key ){
-				selected = value.id == productBacklog.status ? 'selected="selected"' : '';
+				selected = value.id == productBacklog[n] ? 'selected="selected"' : '';
 				%><option value="<%= value.id %>"><%= value.name %></option><%
 			}); %>
 		</select>
 	</p>
 	<div class="clearfix" ></div>
+	<%
+					break;
+				case 'theme':
+	%>
 	<p>
 		<label for="theme" >Theme</label>
 		<select id="theme" name="theme"><%
 			theme.forEach( function( value, key ){
-				selected = value.id == productBacklog.theme ? 'selected="selected"' : '';
+				selected = value.id == productBacklog[n] ? 'selected="selected"' : '';
 				%><option value="<%= value.id %>"><%= value.name %></option><%
 			}); %>
 		</select>
 	</p>
 	<div class="clearfix" ></div>
+	<%
+					break;
+				case 'size':
+	%>
 	<p>
 		<label for="size" >Size</label>
-		<input type="number" id="size" name="size" value="<%= productBacklog.size %>" />
+		<input type="number" id="size" name="size" value="<%= productBacklog[n] %>" />
 	</p>
 	<div class="clearfix" ></div>
+	<%
+					break;
+				default:
+	%>
+					<input type="hidden" id="<%= n %>" name="<%= n %>" value="<%= productBacklog[n] %>" />
+	<%
+			}
+		}
+	%>
 	<p>
 		<input type="submit" id="submit" name="submit" value="<%= form.submit %>" />
 		<input type="reset" id="reset" name="reset" value="Reset" />

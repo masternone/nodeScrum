@@ -30,11 +30,9 @@ app.configure( 'production', function(){
 // Routes
 app.get( '/', routes.index );
 app.get( '/:controller', function( req, res, next ){
-	console.log( 'index', req.params );
 	routes[req.params.controller].index( req, res );
 });
 app.get( '/:controller/:id', function( req, res, next ){ // show
-	console.log( 'req.params', req.params );
 	if( isNaN( req.params.id ) ) return next();
 	routes[req.params.controller].show( req, res, req.params.id );
 });
@@ -43,6 +41,18 @@ app.get( '/:controller/new', function( req, res, next ){ // new
 });
 app.post( '/:controller', function( req, res, next ){ // create
 	routes[req.params.controller].create( req, res );
+});
+app.get( '/:controller/edit/:id', function( req, res, next ){ // edit
+	if( isNaN( req.params.id ) ) return next();
+	routes[req.params.controller].edit( req, res, req.params.id );
+});
+app.put( '/:controller/:id', function( req, res, next ){ // update
+	if( isNaN( req.params.id ) ) return next();
+	routes[req.params.controller].update( req, res, req.params.id );
+});
+app.delete( '/:controller/:id', function( req, res, next ){ // destroy
+	if( isNaN( req.params.id ) ) return next();
+	routes[req.params.controller].destroy( req, res, req.params.id );
 });
 
 var port = process.env.PORT || 8888,
