@@ -17,11 +17,48 @@ to view the results
 http://localhost:8888/
 
 TODO
+	Charts
+		Ideal Burndown
+		Actual Burndown
+		Projected Burndown
+	Burndown
+	Sprint Backlog
+		attributes
+			Accepted Stories
+				This must be able to pull incomplete stories forward that are not complete
+				Story Tasks
+			Start Date
+			Length
+			Assigning 
+			Team members availability
+		index
+		new
+		create
+		show
+		edit
+		update
+		destroy
+	Team Members
+		destroy
 	Product Backlog
+		acceptance critera
+			index
+			new
+			create
+			show
+			edit
+			update
+			destroy
 		destroy
 
 Complete
-
+	Team Menbers
+		index
+		new
+		create
+		show
+		edit
+		update
 	Product Backlog
 		index
 		new

@@ -1,0 +1,28 @@
+<table cellpadding="0" cellspacing="0" border="1" frame="void" rules="all" >
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Email</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody><%
+	if( teamMembers.length > 0 ){
+		teamMembers.forEach(function( value, key ){ 
+			var stripe = key % 2 == 0 ? 'even' : 'odd'; %>
+			<tr class="<%= stripe %>">
+				<td><a href="/teamMembers/<%= key %>"><%= value.name %></a></td>
+				<td><%= value.email %></td>
+				<td><a href="/teamMembers/edit/<%= key %>">Edit</a></td> 
+			</tr><%
+			if( value.criteria && value.criteria.length > 0 ){
+				value.criteria.foreach( function( value2, key2 ){ %>
+					<tr>
+						<td><%= value2 %></td>
+					</tr><%
+				});
+			}
+		});
+	}
+%>	</tbody>
+</table>

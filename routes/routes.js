@@ -1,7 +1,7 @@
 var data   = require( '../util/data' ),
 	linkTo = require( '../util/linkTo' );
 
-var dataAreas = ['productBacklog', 'sprintBacklog'];
+var dataAreas = ['teamMembers', 'productBacklog', 'sprintBacklog'];
 
 /*
  * GET root
@@ -21,5 +21,6 @@ exports.index = function( req, res ){
  * The object that defines the actions for each controller have been moved to a seperate file for each
  * controller.
  */
-exports.productBacklog  = require( './productBacklog' ).productBacklog( data, linkTo );
-//exports.sprintBacklog   = require( './sprintBacklog'  ).sprintBacklog(  linkTo );
+exports.teamMembers = require( './teamMembers' ).teamMembers( data, linkTo );
+exports.productBacklog = require( './productBacklog' ).productBacklog( data, linkTo );
+//exports.sprintBacklog = require( './sprintBacklog'  ).sprintBacklog(  linkTo );

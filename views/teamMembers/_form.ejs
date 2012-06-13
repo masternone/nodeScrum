@@ -1,0 +1,39 @@
+<form id="<%= form.name %>" name="<%= form.name %>" action="<%= form.action %>" method="POST" >
+	<% if( form.method == "PUT" ){ %><input type="hidden" id="_method" name="_method" value="<%= form.method %>" /> <% } %>
+	<% teamMembers.name = typeof( teamMembers.name ) == 'undefined' ? '' : teamMembers.name %>
+	<% teamMembers.email = typeof( teamMembers.email ) == 'undefined' ? '' : teamMembers.email %>
+	<% 
+		for( n in teamMembers ){
+			switch( n ){
+				case 'name':
+	%>
+	<p>
+		<label for="name" >Name</label>
+		<input type="text" id="name" name="name" value="<%= teamMembers[n] %>" />
+		<span class="clearfix" ></span>
+	</p>
+	<div class="clearfix" ></div>
+	<%
+					break;
+				case 'email':
+	%>
+	<p>
+		<label for="email" >Email</label>
+		<input type="email" id="email" name="email" value="<%= teamMembers[n] %>" />
+	</p>
+	<div class="clearfix" ></div>
+	<%
+					break;
+				default:
+	%>
+					<input type="hidden" id="<%= n %>" name="<%= n %>" value="<%= teamMembers[n] %>" />
+	<%
+			}
+		}
+	%>
+	<p>
+		<input type="submit" id="submit" name="submit" value="<%= form.submit %>" />
+		<input type="reset" id="reset" name="reset" value="Reset" />
+	</p>
+	<div class="clearfix" ></div>
+</form>
